@@ -71,8 +71,9 @@ ncol(df)
 
 # Push your script and your .csv file to GitHub in a new "Week1" folder.
 
-setwd("C:/GitHub/R4Eco_2022/Week1")
+setwd("C:/GitHub/Rolecki-R4Ecol/data")
 
 getwd()
 
-smart_wd(repo = "Rolecki-R4Ecol")
+
+write.csv(df,file="week 1")
