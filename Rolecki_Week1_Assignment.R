@@ -43,10 +43,9 @@ df
 colnames(Chelsea) <- colnames(df)    
 rbind(df, Chelsea)
 
-row.names(df) <- c(row.names(df.a[1:9,]),"Another")
-df
 #HELP! This is the only part I couldn't get to work :)
-
+row.names(df) <- c(row.names(df[1:14,]),"Another color")
+df
 
 # Export the data frame as a .csv file 
 
@@ -76,4 +75,4 @@ setwd("C:/GitHub/Rolecki-R4Ecol/data")
 getwd()
 
 
-write.csv(df,file="week 1")
+write.csv(df,file="week 1 real")
