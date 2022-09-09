@@ -25,7 +25,7 @@ df
 
 colnames(df) <- c("Colors", "Repeated characters", "Numbers", "Numbers repeating","Decimals")
 df
-row.names(df) <- df$"Colors"
+row.names(df) <- df$"Colors" #I have never seen this syntax before...very cool that it worked. FYI, you don't need the quotes around colors here.
 df
 
 
@@ -44,7 +44,7 @@ colnames(Chelsea) <- colnames(df)
 rbind(df, Chelsea)
 
 #HELP! This is the only part I couldn't get to work :)
-row.names(df) <- c(row.names(df[1:14,]),"Another color")
+row.names(df) <- c(row.names(df[1:14,]),"Another color") # It worked!
 df
 
 # Export the data frame as a .csv file 
@@ -52,7 +52,7 @@ df
 # Generate summary statistics of your data frame and copy them as text into your script under a new section heading.
 
 ####
-summary(df)
+summary(df) #So close! The numeric columns should have summary statistics with them below.
 nrow(df)
 ncol(df)
  
