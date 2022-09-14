@@ -45,13 +45,13 @@ arrows(b.plot, df.mean$Mean-df.sd$Standard.Dev,
 
 barplot(df.mean$Mean, names.arg = df.mean$Factor, xlab = "House type", ylab = "Number", main = "My Least favorite barplot plot",cex.main=0.8,ylim = c(0,200))
 arrows(b.plot, df.mean$Mean-df.sd$Standard.Dev,
-       b.plot, df.mean$Mean+df.sd$Standard.Dev,angle=90,code=3)
+       b.plot, df.mean$Mean+df.sd$Standard.Dev,angle=90,code=3) #But why least favorite? :(
 
 #### Create a scatter plot between two of your numeric columns.
 
 plot(df$dec.num ~ df$uniqu.num)
 plot(df$dec.num ~ df$uniqu.num, xlab = "Number of things we do in this class", ylab = "Number of times I get confused", main = "I promise I like this class", col = (123.96), pch = (7))
-
+#What happened to the fantastic logrithmic version? This feels less optimistic...
 
 # Change the point shape and color to something NOT used in the example.
   # Change the x and y labels and add a title
@@ -65,3 +65,5 @@ plot(df$dec.num ~ df$uniqu.num, xlab = "Number of things we do in this class", y
 setwd("C:/GitHub/Rolecki-R4Ecol/data")
 getwd()
 write.csv(df,file="week 2 Assignment")
+
+#almost perfect! Forgot to specify the PDF dimensions. 
