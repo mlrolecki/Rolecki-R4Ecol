@@ -104,3 +104,8 @@ diversity(data=X, type="rao-stirling", method="euclidean", alpha=0, beta=1)
 #South Africa    0.4394464
 #Uruguay         0.3130194
 #Vietnam         0.3140496
+
+
+setwd("C:/GitHub/Rolecki-R4Ecol/Week 3")
+getwd()
+write.csv(df,file="week 3 Assignment")
