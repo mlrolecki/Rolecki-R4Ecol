@@ -108,4 +108,4 @@ diversity(data=X, type="rao-stirling", method="euclidean", alpha=0, beta=1)
 
 setwd("C:/GitHub/Rolecki-R4Ecol/Week 3")
 getwd()
-write.csv(df,file="week 3 Assignment")
+write.csv(df,file="week 3 Assignment")#forgot to include the ".csv" at the end of the file name in quotes! otherwise this would have worked.
