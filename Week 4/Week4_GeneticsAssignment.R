@@ -47,3 +47,19 @@ summary(mod.fac)
 #The genetic model is overfit because there is too much data trying to be explained.
 
 # Which environment would be your very WORST choice for generating a strong yield response? (2 points)
+mod.fac <- lm(ge_data$Yield~ge_data$Institute)
+anova(mod.fac)
+summary(mod.fac)
+
+mod.fac <- lm(ge_data$Yield~ge_data$Rep)
+anova(mod.fac)
+summary(mod.fac)
+
+
+mod.fac <- lm(ge_data$Yield~ge_data$Block)
+anova(mod.fac)
+summary(mod.fac)
+
+#The replicate would be the worst choice for generating a strong yield response. 
+#This is shown by the significantly lower r-squared value.
+
