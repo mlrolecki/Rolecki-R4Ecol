@@ -1,7 +1,7 @@
 # Look at the plot and model results for our Dryad data in the tutorial. Part 1: Without knowing which points represent which groups, 
   # give one explanation for why these data might be difficult to draw spatial inferences about genes.(3 points)
 
-#Without knowing what groups the points represent, it would be difficult to determine why the genes of these groups may be grouped together
+#Without knowing what groups the points represent, it would be difficult to determine why the genes of these groups may be grouped together #Part of the answer - think about the clustering of points too.
 
   # Part 2: Despite the drawbacks, give the result or interpretation that you feel most confident in (3 points), and EXPLAIN WHY (4 points).
 
@@ -44,7 +44,7 @@ anova(mod.fac)
 summary(mod.fac)
 
 #The environmental model is a better fit to explain the yield response. The R value is higher and the p value is lower. 
-#The genetic model is overfit because there is too much data trying to be explained.
+#The genetic model is overfit because there is too much data trying to be explained. #Too many variables trying to explain the data - you have the right idea here.
 
 # Which environment would be your very WORST choice for generating a strong yield response? (2 points)
 mod.fac <- lm(ge_data$Yield~ge_data$Institute)
@@ -60,6 +60,6 @@ mod.fac <- lm(ge_data$Yield~ge_data$Block)
 anova(mod.fac)
 summary(mod.fac)
 
-#The replicate would be the worst choice for generating a strong yield response. 
+#The replicate would be the worst choice for generating a strong yield response. # The replicate? The point was to look at each environment in the Env model output. I see what you did though...
 #This is shown by the significantly lower r-squared value.
 
