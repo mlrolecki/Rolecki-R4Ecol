@@ -20,6 +20,13 @@
     #HINT- "Num.Cells.Progeny" has defined breaks. To display results, use the formula with the "chisqbreaks" argument as follows:
       #gofstat(list(fit.1, fit.2, fit.3, etc), chisqbreaks=c(1,2,4,8,16,32,64))
 
+library(fitdistrplus)
+library(logspline)
+data <- read.csv(file=("C:/GitHub/Rolecki-R4Ecol/Week 5/Figure4Data.csv"), header=T)
+data
+?fitdist
+fitdist(data$Num.Cells.Progeny, data$Num.Cells.Strain)
+gofstat(list(fit.1, fit.2, fit.3, etc), chisqbreaks=c(1,2,4,8,16,32,64))
 
 # Based on the AIC scores, which distribution is the best fit for: (4 pts)
   # (1) - The number of cells of progeny (data$Num.Cells.Progeny)?
