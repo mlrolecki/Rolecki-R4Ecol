@@ -12,7 +12,6 @@ data <- read.csv(file=("C:/GitHub/Rolecki-R4Ecol/Week 5/Figure4Data.csv"), heade
 # In this current script, I use weighted means for both plotting and calculating mean progeny sizes
 # In other words, I use weighted means for everything in this analysis.
 
-
 # The following weights cell counts of progeny size data by proportion biomass
 # This script repeats a given row by a frequency equal to the progeny size 
 #   E.g. num.cells.progeny = 8 will have 8 rows, therefore weighting the
