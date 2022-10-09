@@ -15,6 +15,8 @@ head(df)
     # In the other model include one interactive effect.
     # Use a binomial distribution and block as a random effect in both models to match the paper's analyses. Remember ?family to find distribution names.
 
+glmm.mod <- glmmPQL(eaten~object, family = gaussian, random = ~ 1 | ID, data = df)
+
 # The authors used proportional consumption of prey as the (y) in their model, but did not include this in the dataset.
   # So we are going to create it - run the following line, assuming df= your data frame (feel free to change that):
 df$prop.cons <- df$eaten/df$prey 
