@@ -11,7 +11,7 @@
 # Based on these observations of your strain distributions, why did the authors use a Kruskal-Wallis test rather than ANOVA to compare the strains? (2 pts)
 
 #One assumption of the ANOVA test is that there is equal variance between the groups, while the Kruskal-Wallis test does not assume normalcy, and allows you to analyze data with different variances based on standard deviation.
-
+#based on rank/median, not standard deviation. 
 
 # Use the fitdist() and gofstat() functions to compare the poisson, negative binomial, and logistic distributions for:
   # (1) - The number of cells of progeny (data$Num.Cells.Progeny)
@@ -61,7 +61,7 @@ hist(data$RepTime.sec, main = "Frequency of Replication Time", xlab = "Replicati
 #This could be because the faster replication time increases the rate of reproduction, allowing these faster replication genes to be passed on more prevalently
 #and the longer replication time may be able to allocate more resources to the offspring, even if they have less of them over time, causing them to be more fit and likely to survive. 
 
-
+#r/K selection within a species, eh? I like it.
 
 
 
