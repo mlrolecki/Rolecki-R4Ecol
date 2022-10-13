@@ -29,24 +29,45 @@ df$prop.cons <- df$eaten/df$prey
 
 # (Q1) - The code in line 8 is performing two operations at once. What are they? (2 pts)
 
+#The code is first dividing the number of prey eaten by number of prey given, turning it into a proportion.
+#This data is then named df$prop.cons using the <-
 
 # (Q2) - Did the interactive effect change which variables predict proportional consumption? How, specifically, did the results change? (5 pts)
 
+#The interactive effect made it so that all variables were placed against one another to predict prop consumption. 
+#This caused there to be 8 variables instead of only 4. The residual was 0.41020, 
+#as opposed to the additive model which had a residual of0.41645. The additive effect had a higher residual, meaning it wasn't as good of a fit. 
 
 # (Q3) - Plot the residuals of both models. Do you think either model is a good fit? Why or why not? (3 pts)
 
+plot(glmm.mod1$residuals, ylim = c(-.1,.1))
+plot(glmm.mod2$residuals, ylim = c(-.1,.1))
+
+#Neither is a good fit for this data, as there is a distinct pattern in the residual plot. 
 
 # Re-run both models as generalized additive models instead (using gam). Then compare the AIC of both models. (4 points each)
+
+gam.mod1 <- gam(activity.level~toadfish.cue.treatment+carapace.width+claw.width, family = binomial, random = list(ID=~ 1), data = df)
+summary(gam.mod1)
+AIC(gam.mod1)
+
+gam.mod2 <- gam(activity.level~toadfish.cue.treatment*carapace.width*claw.width, family = binomial, random = list(ID=~ 1), data = df)
+summary(gam.mod2)
+AIC(gam.mod2)
 
 
 # (Q4) - Which model is a better fit? (2 pt)
 
+#Model 1, or the additive effect model, is a better fit, as the AIC is lower.
 
 # (Q5) - Based on the residuals of your generalized additive models, how confident are you in these results? (2 pts)
 
 
+plot(gam.mod1$residuals, ylim = c(-.1,.1))
+plot(gam.mod2$residuals, ylim = c(-.1,.1))
 
-
+#I am relatively confident that the results for the gam model show a good fit, as the residual data shows no distinct pattern.
+#This means that there is likely no underlying correlation that is not being accounted for. 
 
 
 
