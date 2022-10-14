@@ -37,6 +37,9 @@ df$prop.cons <- df$eaten/df$prey
 #The interactive effect made it so that all variables were placed against one another to predict prop consumption. 
 #This caused there to be 8 variables instead of only 4. The residual was 0.41020, 
 #as opposed to the additive model which had a residual of0.41645. The additive effect had a higher residual, meaning it wasn't as good of a fit. 
+summary(glmm.mod1)
+summary(glmm.mod2)
+#If you look at the summary from each model, the predictors are significant in the additive and not in the interactive, suggesting an overfit for the interactive.
 
 # (Q3) - Plot the residuals of both models. Do you think either model is a good fit? Why or why not? (3 pts)
 
