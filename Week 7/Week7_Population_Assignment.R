@@ -80,3 +80,4 @@ legend("topright", c("Limnocalanus", "D.mendotae"), lty = c(1,2), col = c(1,2), 
 #This shows the population growth and rate of predation were both low, while the rate of consumption and predator die off were high.
 #This depicts the short lifespan and relative r-selection of the species, in which they have lots of offspring and many do not survive. 
 #Yes, there are a variety of changes that could lead to the same outcome. If the alpha and beta were increased, the gamma and delta would just have to be increased to reflect that. 
+#Perfect.
