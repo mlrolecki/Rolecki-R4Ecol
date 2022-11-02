@@ -6,7 +6,7 @@
 
 library(readxl)
 
-setwd("C:/GitHub/Rolecki-R4Ecol/Week 8")
+setwd("C:/GitHub/Rolecki-R4Ecol/Week 9")
 
 abiotic.tibble <- read_excel("Penaetal_2016_data.xlsx", sheet = "Abiotic factors")
 abiotic <- as.data.frame(abiotic.tibble)
@@ -51,8 +51,6 @@ invert.unmerged1 <- sapply(invert.unmerged, as.numeric)
 invert.unmerged1 <- as.data.frame(invert.unmerged1)
 
 
-abiotic.means$Group.1==invert.means$Group.1
-
 
 library(vegan)
 colnames(abiotic.unmerged)
@@ -61,6 +59,17 @@ ord
 
 anova(ord)
 plot(ord)  
+
+ord <- rda(invert.unmerged1 ~., abiotic.unmerged1[,-8:-9]) 
+ord.int <- rda(invert.unmerged1 ~1, abiotic.unmerged1[,-8:-9])
+
+
+
+step.mod <- ordistep(ord.int, scope = formula(ord), selection = "both")
+step.mod$anova
+
+step.R2mod <- ordiR2step(ord.int, scope = formula(ord), selection = "forward")
+
 # (Q2 - 12 pts) Then use the dataset from the tutorial to create a linear model related to your RDA. Try multiple predictors to find the best fit model.
   # Explain the ecological importance of the significant predictors, or lack of significant predictors.
 
