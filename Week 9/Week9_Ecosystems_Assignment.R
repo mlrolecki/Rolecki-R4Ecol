@@ -70,9 +70,72 @@ step.mod$anova
 
 step.R2mod <- ordiR2step(ord.int, scope = formula(ord), selection = "forward")
 
+
+#None of the predictor variables are significant. 
+#This means that the abiotic factors, as individuals, do not have a significant statistical effect on the invertebrate communities.
+#This is important because it shows that the variables likely have a combined effect on the invertebrate species makeup in the community, 
+#rather than one factor driving the differentiation between plots. 
+
 # (Q2 - 12 pts) Then use the dataset from the tutorial to create a linear model related to your RDA. Try multiple predictors to find the best fit model.
   # Explain the ecological importance of the significant predictors, or lack of significant predictors.
 
+library(fitdistrplus)
+library(logspline)
+
+#Kind of getting confused here I'm not sure what I am supposed to plot... Plotting data from tutorial as linear model to compare to above findings!
+
+plants.tibble <- read_excel("Penaetal_2016_data.xlsx", sheet = "Data_intro_exp_4_species")
+plants <- as.data.frame(plants.tibble)
+
+abiotic$Parcel <- unique(abiotic$Parcel)
+
+soil.plants <- merge(abiotic, plants, by = "Parcel")
+
+View(soil.plants)
+
+library(fitdistrplus)
+library(logspline)
+
+
+mod1 <- lm(Leaves ~ pH + totalN + Kalium + Magnesium + Ca + Al + TotalP + Land_use + Species_code,soil.plants)
+summary(mod1)
+anova(mod1)
+AIC(mod1)
+
+summary(mod1)$adj.r.squared
+
+mod2 <- lm(Leaves ~ pH + totalN + Kalium + Species_code,soil.plants)
+summary(mod2)
+anova(mod2)
+AIC(mod1,mod2)
+
+mod3 <- lm(Leaves ~ pH + totalN + Species_code,soil.plants)
+summary(mod3)
+anova(mod3)
+AIC(mod2, mod3)
+plot(mod3$residuals)
+summary(mod3)$adj.r.squared
+
+mod4 <- lm(Leaves ~ pH*totalN*Kalium + Species_code,soil.plants)
+summary(mod4)
+anova(mod4)
+AIC(mod2,mod3,mod4)
+plot(mod4$residuals)
+summary(mod4)$adj.r.squared
+
+mod5 <- lm(Leaves ~ pH + Kalium + totalN*Species_code,soil.plants)
+summary(mod5)
+anova(mod5)
+AIC(mod2,mod3,mod4,mod5)
+plot(mod5$residuals)
+summary(mod5)$adj.r.squared
+
 # (Q3 - 6 pts) Provide a 3-4 sentence synthesis of how these results relate to one another and the value of considering both together for interpreting biotic-abiotic interactions.
 
-
+#The model depicting the abiotic-plant relationship showed a significant relationship between potassium, nitrogen, and plant species as a function of leaf growth.
+#This depicts the importance of these nutrients on the subsequent biomass of the leaves when the levels of these nutrients and plant species are changed.
+#Comparatively, there were no distinct predictor values within the abiotic-invertebrate relationship.
+#This shows that there is likely an overall effect of the variables combined, as well as outside factors that were not considered.
+#This shows may be more relevant to explore the interactions between invertebrates and other data, such as vegetation or the nematode community. 
+#As this data was collected within an ecological system, it is important to investigate how all of the variables interact. 
+#Even if there isn't a distinct correlation, knowing there is an additive effect only goes to show to the importance of all factors within the system. 
