@@ -74,7 +74,10 @@ step.R2mod <- ordiR2step(ord.int, scope = formula(ord), selection = "forward")
 #None of the predictor variables are significant. 
 #This means that the abiotic factors, as individuals, do not have a significant statistical effect on the invertebrate communities.
 #This is important because it shows that the variables likely have a combined effect on the invertebrate species makeup in the community, 
-#rather than one factor driving the differentiation between plots. 
+#rather than one factor driving the differentiation between plots.
+#I would have run a next model with your best one or two predictors (perc ash and kalium) to see if those alone produce a significant result.
+#What you did is good enough for the assignment though.
+
 
 # (Q2 - 12 pts) Then use the dataset from the tutorial to create a linear model related to your RDA. Try multiple predictors to find the best fit model.
   # Explain the ecological importance of the significant predictors, or lack of significant predictors.
@@ -130,9 +133,11 @@ AIC(mod2,mod3,mod4,mod5)
 plot(mod5$residuals)
 summary(mod5)$adj.r.squared
 
+#So which model is best? it was mod1 but you started ignoring it.
+
 # (Q3 - 6 pts) Provide a 3-4 sentence synthesis of how these results relate to one another and the value of considering both together for interpreting biotic-abiotic interactions.
 
-#The model depicting the abiotic-plant relationship showed a significant relationship between potassium, nitrogen, and plant species as a function of leaf growth.
+#The model depicting the abiotic-plant relationship showed a significant relationship between potassium, nitrogen, and plant species as a function of leaf growth. (leaf growth as a function of the others)
 #This depicts the importance of these nutrients on the subsequent biomass of the leaves when the levels of these nutrients and plant species are changed.
 #Comparatively, there were no distinct predictor values within the abiotic-invertebrate relationship.
 #This shows that there is likely an overall effect of the variables combined, as well as outside factors that were not considered.
