@@ -1,7 +1,7 @@
 # Load the packages from this week's tutorial.
 #In the tutorial we looked at the community as a whole and the swimmers which ultimately matched a prediction we had for their distribution.
 
-
+setwd("C:/GitHub/R4Eco_2022/Week10")
 library(spdep)
 library(adespatial)
 library(vegan)
@@ -95,6 +95,29 @@ RsquareAdj(TriHabNoSpace.rda)
     #Fines = Percent of the substrate as "fines" i.e. small particles too small to measure
     #AveAr = The average size of rocks where each sample was collected
 
+#Diptera
+DipHab.rda <- rda(Diptera.mat, as.data.frame(HabitatbyPatch.mat))
+DipHab.r2a <- RsquareAdj(DipHab.rda)$adj.r.squared
+DipHab.fwd <- forward.sel(Diptera.mat,as.data.frame(HabitatbyPatch.mat), adjR2thresh=Space.r2a)
+anova(DipHab.rda, perm.max = 10000)
+RsquareAdj(DipHab.rda)
+DipHab.rda
+DipHab.fwd$order
+#Significant factors: 3, 5, 6, 8, 1 (CHLOPOPHYLL A CONCENTRATION, WATER DEPTH, WATER VELOCITY, AVERAGE ROCK SIZE, INORGANIC SOLIDS IN WATER COLUMN)
+
+
+#Trichoptera
+TrichHab.rda <- rda(Trichoptera.mat, as.data.frame(HabitatbyPatch.mat))
+TrichHab.r2a <- RsquareAdj(TrichHab.rda)$adj.r.squared
+TrichHab.fwd <- forward.sel(Trichoptera.mat,as.data.frame(HabitatbyPatch.mat), adjR2thresh=Space.r2a)
+anova(TrichHab.rda, perm.max = 10000)
+RsquareAdj(TrichHab.rda)
+TrichHab.rda
+TrichHab.fwd$order
+#Only 5 is a significant factor (WATER DEPTH)
 
 #Part 4: How do you expect selecting both the spatial and the habitat variables would change the results of the RDAs from Part 1 above? (5 points)
   #(You do not need to redo the RDAs, unless you *want* to.)
+
+#I believe selecting both the spatial and habitat variables would overfit the RDA, causing most variables to be insignificant. 
+#This is because too much of the data would be explained by the analysis, causing it to show inaccurate results.
