@@ -81,6 +81,8 @@ RsquareAdj(TriHabNoSpace.rda)
 #This shows that Diptera can inhabit a wider range of space than habitat, where they are more restricted. 
 #Similarly, 57% of Trichoptera occurrence can be explained by space (lat/long) while only 2.5% is explained by habitat, when the variables are discrete. 
 #This shows that Trichoptera can also inhabit a wider range of space, and is more limited by habitat. 
+#So close! You've got everything right except the interpretation flipped here. Because space explains more, it means they choose their habitat less (because they can't move as well). 
+#Makes sence since Diptera are better fliers that they would have less variance explained by space.
 #Diptera and Trichoptera both are more commonly limited by habitat than space. 
 #This makes sense, as both insects have flight ability and can move across space rather easily, while they more be more restricted by clinmate and environmental factors raised by habitat change. 
 
@@ -121,3 +123,4 @@ TrichHab.fwd$order
 
 #I believe selecting both the spatial and habitat variables would overfit the RDA, causing most variables to be insignificant. 
 #This is because too much of the data would be explained by the analysis, causing it to show inaccurate results.
+#Also all the right details but flipped again! Not selecting is what causes the model to be overfit because you are using "extra" information without selection.
