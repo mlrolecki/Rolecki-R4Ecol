@@ -15,23 +15,31 @@ weather <- as.data.frame(weather.data)
 
 #RENAMING COLUMN NAMES TO MATCH
 
-'COUNTY' <- names(weather)[names(weather) == 'site'] 
+names(weather)[names(weather) == 'site'] <-"COUNTY"
 names(weather)
 
 #Separating dates into yr month day; renaming to match in each dataset
 #Cannot figure out why COUNTY yyyy and mm show up empty?????
+#Matt thank you so much if you had not helped me fix my merge data I would have had a breakdown I appreciate you :)
+
 ?strsplit
 
 strsplit(list(curlew$`OBSERVATION DATE`), "-")
 
 dates <- data.frame(do.call("rbind", strsplit(as.character(curlew$`OBSERVATION DATE`), "-", fixed = TRUE)))
-"yyyy" <- names(curlew)[names(curlew) == 'X1'] 
-"mm" <- names(curlew)[names(curlew) == 'X2']
-
-Location.date <- cbind
 
 
-curlew.weather <- merge(curlew.data, weather.data, by cbind(COUNTY, yyyy, mm))
+names(dates)[names(dates) == 'X1'] <- 'yyyy' 
+names(dates)[names(dates) == 'X2'] <- "mm"
+names(curlew)[names(curlew) == "COUNTY"] <- "Site"
+
+curlew.date <- cbind(curlew,dates)
+
+
+curlew.weather <- merge(curlew.date, weather, by = c("Site", "yyyy","mm"))
+
+
+#NOW, DATA ANALYSIS!!!
 
 
   
