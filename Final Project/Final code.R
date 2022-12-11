@@ -53,7 +53,7 @@ num.curlew.data <-as.numeric(as.character(curlew.data.obscount1$`OBSERVATION COU
 #Shows that the birds are often found in low numbers (individual, pair, small group) but that there are likely breeding events that take place infrequently with hundreds of individuals. 
 hist(num.curlew.data, xlab = "Curlew Count", ylab= "Frequency", col = 'skyblue3', breaks= 50, main= "Curlew Count Frequency")
 ?hist
-
+ 
 #RDA
 library(vegan)
 colnames(curlew.weather)
