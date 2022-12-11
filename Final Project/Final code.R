@@ -54,4 +54,10 @@ num.curlew.data <-as.numeric(as.character(curlew.data.obscount1$`OBSERVATION COU
 hist(num.curlew.data, xlab = "Curlew Count", ylab= "Frequency", col = 'skyblue3', breaks= 50, main= "Curlew Count Frequency")
 ?hist
 
+#RDA
+library(vegan)
+colnames(curlew.weather)
+ord <- rda(curlew.weather$`OBSERVATION COUNT` ~ rain + sun + tmax, curlew.weather)
+ord
+
   
