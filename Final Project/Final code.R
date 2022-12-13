@@ -52,7 +52,7 @@ num.curlew.data <-as.numeric(as.character(curlew.data.obscount1$`OBSERVATION COU
 #Shows that the birds are often found in low numbers (individual, pair, small group) but that there are likely breeding events that take place infrequently with hundreds of individuals. 
 hist(num.curlew.data, xlab = "Curlew Count", ylab= "Frequency", col = 'skyblue3', breaks= 50, main= "Curlew Count Frequency")
 ?hist
- 
+
 
 #RDA
 library(vegan)
@@ -83,12 +83,21 @@ library(mgcv)
 ?glmmPQL
 colnames(curlew.weather)
 curlew.weather.df <- as.data.frame(curlew.weather)
-obs.count <- curlew.weather$`OBSERVATION COUNT`
-weather.rain <- curlew.weather$rain
+curlew.weather.df <- na.omit(curlew.weather.df)
+obs.count <- curlew.weather.df$`OBSERVATION COUNT`
+weather.rain <- curlew.weather.df$rain
 obs.count < as.numeric(obs.count)
 locations <- curlew.weather$Site
+temp<- curlew.weather$tmax
+temp <- as.numeric(temp)
+#i think this is messing up my variable length
+#obs.count <- na.omit(obs.count)
+#weather.rain <- na.omit(weather.rain)
+#locations <- na.omit(locations)
+glm.count.location.rain <- glm(obs.count~ locations + weather.rain, family = Gamma, random = list(ID=~ 1))
+glm.count.location.temp <- glm(obs.count~ locations + temp, family = Gamma, random = list(ID=~ 1))
 
-glm.count.location <- glm(obs.count~ locations + weather.rain, family = Gamma, random = list(ID=~ 1))
+
 
 ?glm
   
