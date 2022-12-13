@@ -40,7 +40,6 @@ curlew.date <- cbind(curlew,dates)
 #Merging dates and locations
 curlew.weather <- merge(curlew.date, weather, by = c("Site", "yyyy","mm"))
 
-
 #NOW, DATA ANALYSIS!!!
 #Getting rid of non-numeric in curlew count data:
 curlew.data$`OBSERVATION COUNT` <- gsub("X", "NA", curlew.data$`OBSERVATION COUNT`)
@@ -54,10 +53,25 @@ num.curlew.data <-as.numeric(as.character(curlew.data.obscount1$`OBSERVATION COU
 hist(num.curlew.data, xlab = "Curlew Count", ylab= "Frequency", col = 'skyblue3', breaks= 50, main= "Curlew Count Frequency")
 ?hist
  
+
 #RDA
 library(vegan)
+library(spdep)
+library(adespatial)
 colnames(curlew.weather)
-ord <- rda(curlew.weather$`OBSERVATION COUNT` ~ rain + sun + tmax, curlew.weather)
-ord
+count.mat <- as.matrix(num.curlew.data)
+num.weather.data <-as.numeric(as.character(weather.data))
+weather.mat <- as.matrix(num.weather.data)
+countbyweather.rda <- rda(count.mat, weather.mat)
+#This is the part I cannot get... specifically the aem, where did this dataframe come from in practice/HW and how do I recreate
+#If this would work, this would be lovely
+Countweather.rda <- rda(count.mat, as.data.frame(aem.df[,aem.fwd$order]), weather.mat)
+Countweather.rda 
+anova(Countweather.rda, perm.max = 10000)
+RsquareAdj(Countweather.rda)
+
+?rda
+
+
 
   
