@@ -65,13 +65,30 @@ weather.mat <- as.matrix(num.weather.data)
 countbyweather.rda <- rda(count.mat, weather.mat)
 #This is the part I cannot get... specifically the aem, where did this dataframe come from in practice/HW and how do I recreate
 #If this would work, this would be lovely
-Countweather.rda <- rda(count.mat, as.data.frame(aem.df[,aem.fwd$order]), weather.mat)
+Countweather.rda <- rda(count.mat, as.data.frame(curlew.weather), weather.mat)
 Countweather.rda 
 anova(Countweather.rda, perm.max = 10000)
 RsquareAdj(Countweather.rda)
 
 ?rda
+#JK, I guess an RDA isn't going to work. Very sad, crying a little :( 
+#I don't have the heart to delete so I'm leaving it
 
 
 
+#GLMM (sad)
+library(MASS)
+library(MuMIn)
+library(mgcv)
+?glmmPQL
+colnames(curlew.weather)
+curlew.weather.df <- as.data.frame(curlew.weather)
+obs.count <- curlew.weather$`OBSERVATION COUNT`
+weather.rain <- curlew.weather$rain
+obs.count < as.numeric(obs.count)
+locations <- curlew.weather$Site
+
+glm.count.location <- glm(obs.count~ locations + weather.rain, family = Gamma, random = list(ID=~ 1))
+
+?glm
   
