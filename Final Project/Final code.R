@@ -52,6 +52,9 @@ num.curlew.data <-as.numeric(as.character(curlew.data.obscount1$`OBSERVATION COU
 #Shows that the birds are often found in low numbers (individual, pair, small group) but that there are likely breeding events that take place infrequently with hundreds of individuals. 
 hist(num.curlew.data, xlab = "Curlew Count", ylab= "Frequency", col = 'skyblue3', breaks= 50, main= "Curlew Count Frequency")
 ?hist
+#This is a mess
+summary.stats <- sapply(curlew.data$`OBSERVATION COUNT`, mean, simplify = TRUE, USE.NAMES= TRUE)
+?sapply
 
 
 #RDA
@@ -82,22 +85,33 @@ library(MuMIn)
 library(mgcv)
 ?glmmPQL
 colnames(curlew.weather)
+#converting to df and killing N/As
 curlew.weather.df <- as.data.frame(curlew.weather)
 curlew.weather.df <- na.omit(curlew.weather.df)
+#removing specific columns for analysis
 obs.count <- curlew.weather.df$`OBSERVATION COUNT`
 weather.rain <- curlew.weather.df$rain
 obs.count < as.numeric(obs.count)
 locations <- curlew.weather$Site
 temp<- curlew.weather$tmax
 temp <- as.numeric(temp)
-#i think this is messing up my variable length
+#i think this is messing up my variable length, so omitted
 #obs.count <- na.omit(obs.count)
 #weather.rain <- na.omit(weather.rain)
 #locations <- na.omit(locations)
+
+#variable lengths don't match up, error? 
+#Otherwise, data would show count in respect to the locations and their subsequent rainfall or count in respect to location and max monthly temp
 glm.count.location.rain <- glm(obs.count~ locations + weather.rain, family = Gamma, random = list(ID=~ 1))
 glm.count.location.temp <- glm(obs.count~ locations + temp, family = Gamma, random = list(ID=~ 1))
 
 
 
+#Nope... maybe a linear model?? (send help)
+count.by.weather<-lm(obs.count ~ temp + weather.rain, data = curlew.weather)
+#This should theoretically give summary stats for the lm and above should provide a figure... 
+summary(count.by.weather)
+
 ?glm
+?lm
   
