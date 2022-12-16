@@ -112,6 +112,16 @@ count.by.weather<-lm(obs.count ~ temp + weather.rain, data = curlew.weather)
 #This should theoretically give summary stats for the lm and above should provide a figure... 
 summary(count.by.weather)
 
+#What this model should look like (I didn't rename variables, just wanted to make it work so you could see what/how I did it.)
+curl.fnl <- as.data.frame(cbind(curlew.weather$`OBSERVATION COUNT`, curlew.weather$tmax, curlew.weather$rain))
+curl.fnl <- curl.fnl[complete.cases(curl.fnl), ]
+curl.fnl$V1 <- gsub("X", 0,curl.fnl$V1) #getting rid of the X's that were a plague on your data.
+count.by.weather<-lm(as.numeric(as.character(curl.fnl$V1)) ~ as.numeric(as.character(curl.fnl$V2)) + as.numeric(as.character(curl.fnl$V3)))
+#This should theoretically give summary stats for the lm and above should provide a figure... 
+summary(count.by.weather)
+
+
+
 ?glm
 ?lm
   
